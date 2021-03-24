@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+{% for i in file %}
+	<table border=1>
+		<tr><td>{{i.title}}</td>
+		</tr><tr><td><a href="{{i.field_name.url}}" download="{{i.field_name.url}}">Download</td></tr>
+	</table>
+	{% endfor %}
+</body>
+</html>

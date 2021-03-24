@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm bg-dark">
+<a class="navbar-brand" href="#">ESSEN</a>
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="{% url 'displaymarks' %}">Results</a></li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'fileview' %}">Notes</a></li>
+<li class="nav-item">
+<a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+</ul>
+</nav><br>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">View Profile</a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="profile-tab1" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Mark sheet information</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  	<h2>Welcome to Essen Study Center {{user}}</h2>
+
+  </div>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  	<form action="adduser" method="POST">
+  	 {% csrf_token %}
+  	<br>
+  	<label>
+  	Enter first name</label>
+   &nbsp;&nbsp;
+  	<input type="text" name="txt1">
+  	<br>
+  	<label>
+  	Enter last name</label>
+  &nbsp;&nbsp;&nbsp;
+  	<input type="text" name="txt2">
+  	<br>
+  	<label>
+  	phone number
+  </label>
+    &nbsp;&nbsp;&nbsp;
+  <input type="text" name="txt3">
+  	<br>
+  	<label>Enter Address</label>
+  	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  	  <input type="text" name="txt5">
+  	<br>
+  	<label> Aadhar number:</label>
+  	 &nbsp;
+  <input type="text" name="txt4">
+  	<br>
+ 	<input type="submit" name="Register">
+  	<br>
+  	{{msg0}}
+  	{{msg1}}
+  	{{msg2}}
+</form>
+  </div>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+  	<form action="display">
+  		<table border="1"><tr>
+  			<td>Name</td><td>phone</td>
+  			<td>Address</td>
+<td>Adhar number</td>
+</tr>
+{% for i in regdetails %}
+<tr>
+	<td>{{i.fname}}&nbsp;{{i.lname}}</td>
+	<td>{{i.phone}}</td>
+	<td>{{i.address}}</td>
+	<td>{{i.adhar}}</td>
+</tr>
+	{% endfor %}
+</table>
+<br>
+<input type="submit" value="click to view">
+</form>
+  </div>
+</div>
+
+</body>
+</html>

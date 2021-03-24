@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Semester1 Exam</h1>
+{% for i in markdetails %}
+<table border=1>
+	<th>Subject</th><th>Marks/50</th>
+	<tr><td>Maths</td><td>{{i.Maths}}</td>
+	</tr>
+	<tr><td>English</td><td>{{i.English}}</td>
+	</tr>
+</table>
+{% endfor %}
+<br>
+<br>
+<form action="matplot" method='POST'>
+	 {% csrf_token %}
+	 <input type="submit" name="matplot" value="click to view Graph score">
+  
+   
+</body>
+</html>
